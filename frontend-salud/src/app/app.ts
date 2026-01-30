@@ -73,7 +73,7 @@ export class AppComponent implements OnInit {
 
   // 1. Cargamos los links de las Apps desde el modelo del Banner
   cargarLinksTiendas() {
-    this.http.get('https://vitared-salud-production.up.railway.app').subscribe({
+    this.http.get('https://vitared-salud-production.up.railway.app/api/banner').subscribe({
       next: (res: any) => {
         if (res.items && res.items.length > 0) {
           this.linksApps = res.items[0].fields;
