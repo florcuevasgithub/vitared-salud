@@ -1,12 +1,11 @@
-package com.obrasocial.backend_salud;
+\package com.obrasocial.backend_salud;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.OPTIONS})
 @RestController
 @RequestMapping("/api")
 public class CmsController {
@@ -20,39 +19,45 @@ public class CmsController {
     @Autowired
     private CmsService cmsService;
 
-    @GetMapping("/planes")
-    public ResponseEntity<String> getPlanes() {
-        return ejecutarSeguro("planMedico");
+    // 1. Contenido de páginas (¿Quiénes somos?, Contacto, etc.)
+    @GetMapping("/contenido")
+    public ResponseEntity<String> getContenido() {
+        return ResponseEntity.ok(cmsService.ejecutarConsulta(construirUrl("paginaInformativa")));
     }
 
-    @GetMapping("/cartilla")
-    public ResponseEntity<String> getCartilla() {
-        return ejecutarSeguro("medico");
+    // 2. Empresas Socias (Seguros Bite, etc.)
+    @GetMapping("/empresas")
+    public ResponseEntity<String> getEmpresas() {
+        return ResponseEntity.ok(cmsService.ejecutarConsulta(construirUrl("empresaSocia")));
     }
 
+    // 3. Footer (Categorías como 'Servicios', 'Información Útil')
     @GetMapping("/categorias-footer")
     public ResponseEntity<String> getFooter() {
-        return ejecutarSeguro("categoriaFooter");
+        return ResponseEntity.ok(cmsService.ejecutarConsulta(construirUrl("categoriaFooter")));
     }
 
+    // 4. Planes (Plan Oro, etc.)
+    @GetMapping("/planes")
+    public ResponseEntity<String> getPlanes() {
+        return ResponseEntity.ok(cmsService.ejecutarConsulta(construirUrl("planMedico")));
+    }
+
+    // 5. Cartilla (Médicos)
+    @GetMapping("/cartilla")
+    public ResponseEntity<String> getCartilla() {
+        return ResponseEntity.ok(cmsService.ejecutarConsulta(construirUrl("medico")));
+    }
+
+    // 6. Banner / Home
     @GetMapping("/banner")
     public ResponseEntity<String> getBanner() {
-        return ejecutarSeguro("healthcareHomepage");
+        return ResponseEntity.ok(cmsService.ejecutarConsulta(construirUrl("healthcareHomepage")));
     }
 
-    private ResponseEntity<String> ejecutarSeguro(String contentType) {
-        try {
-            if (spaceId == null || spaceId.isEmpty() || spaceId.contains("{")) {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                        .body("Error: Las variables de entorno no están cargadas en Railway.");
-            }
-            String url = "https://cdn.contentful.com/spaces/" + spaceId +
-                    "/environments/master/entries?access_token=" + accessToken +
-                    "&content_type=" + contentType;
-            return ResponseEntity.ok(cmsService.ejecutarConsulta(url));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error al conectar con Contentful: " + e.getMessage());
-        }
+    private String construirUrl(String contentType) {
+        return "https://cdn.contentful.com/spaces/" + spaceId +
+                "/environments/master/entries?access_token=" + accessToken +
+                "&content_type=" + contentType;
     }
 }
