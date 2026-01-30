@@ -11,26 +11,18 @@ import { environment } from '../app.constants';
   template: `
     <div style="padding: 60px 20px; font-family: sans-serif; min-height: 70vh; background: #fff;">
 
-      <div *ngIf="pagina; else esperaCarga" style="max-width: 900px; margin: 0 auto;">
-
-        <p style="color: #005AAB; font-weight: bold; text-transform: uppercase; font-size: 0.85rem; margin-bottom: 10px;">
-          Sobre nosotros
-        </p>
-
-        <h1 style="color: #002855; font-size: 2.8rem; margin-bottom: 20px; font-weight: bold;">
-          {{ pagina.fields.titulo }}
+      <div *ngIf="datosPagina; else cargandoInfo" style="max-width: 900px; margin: 0 auto;">
+        <h1 style="color: #002855; font-size: 2.8rem; margin-bottom: 20px;">
+          {{ datosPagina.fields.titulo }}
         </h1>
-
-        <div style="width: 50px; height: 4px; background: #005AAB; margin-bottom: 40px;"></div>
-
-        <div style="line-height: 1.8; color: #444; font-size: 1.15rem; white-space: pre-wrap;">
-          {{ pagina.fields.contenido }}
+        <div style="line-height: 1.8; color: #444; white-space: pre-wrap;">
+          {{ datosPagina.fields.contenido }}
         </div>
       </div>
 
-      <ng-template #esperaCarga>
+      <ng-template #cargandoInfo>
         <div style="text-align: center; padding: 100px;">
-          <p style="color: #666; font-size: 1.1rem;">Cargando información de VITARED SALUD...</p>
+          <p>Cargando información de VITARED SALUD...</p>
         </div>
       </ng-template>
 
@@ -38,7 +30,7 @@ import { environment } from '../app.constants';
   `
 })
 export class InfoComponent implements OnInit {
-  pagina: any;
+  datosPagina: any;
 
   constructor(private route: ActivatedRoute, private http: HttpClient) {}
 
@@ -54,10 +46,10 @@ export class InfoComponent implements OnInit {
     this.http.get(`${environment.apiUrl}/api/pagina/${slug}`).subscribe({
       next: (res: any) => {
         if (res.items && res.items.length > 0) {
-          this.pagina = res.items[0];
+          this.datosPagina = res.items[0];
         }
       },
-      error: (err) => console.error('Error cargando página:', err)
+      error: (err) => console.error('Error:', err)
     });
   }
 }
