@@ -7,11 +7,12 @@ import { environment } from '../app.constants';
 @Component({
   selector: 'app-info',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, HttpClientModule, CommonModule],
   template: `
     <div style="padding: 60px 20px; font-family: sans-serif; min-height: 70vh; background: #fff;">
 
-      <div *ngIf="pagina; else cargandoPlantilla" style="max-width: 900px; margin: 0 auto;">
+      <div *ngIf="pagina; else cargandoContenido" style="max-width: 900px; margin: 0 auto;">
+
         <p style="color: #005AAB; font-weight: bold; text-transform: uppercase; font-size: 0.85rem; margin-bottom: 10px;">
           Sobre nosotros
         </p>
@@ -27,7 +28,7 @@ import { environment } from '../app.constants';
         </div>
       </div>
 
-      <ng-template #cargandoPlantilla>
+      <ng-template #cargandoContenido>
         <div style="text-align: center; padding: 100px;">
           <p style="color: #666; font-size: 1.1rem;">Cargando información de VITARED SALUD...</p>
         </div>
@@ -43,7 +44,9 @@ export class InfoComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.cargarDatos(params['slug']);
+      if (params['slug']) {
+        this.cargarDatos(params['slug']);
+      }
     });
   }
 
@@ -54,7 +57,9 @@ export class InfoComponent implements OnInit {
           this.pagina = res.items[0];
         }
       },
-      error: (err) => console.error('Error cargando página:', err)
+      error: (err) => {
+        console.error('Error cargando página:', err);
+      }
     });
   }
 }
