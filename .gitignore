@@ -1,0 +1,6 @@
+# Esto ignora los archivos sin importar en qué carpeta estén
+**/target/
+**/node_modules/
+**/application.properties
+**/.idea/
+**/.angular/
