@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home';
-import { InfoComponent } from './components/info/info';
+import { InfoComponent } from './components/info/info.component';
 
 // IMPORTANTE: Asegúrate de que las rutas a continuación sean las correctas
 // según la ubicación real de tus archivos de Planes y Cartilla
