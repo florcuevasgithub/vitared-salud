@@ -9,7 +9,7 @@ public class CmsService {
 
     private final RestTemplate restTemplate = new RestTemplate();
 
-    @Cacheable(value = "contentfulCache", key = "#url")
+    //@Cacheable(value = "contentfulCache", key = "#url")
     public String ejecutarConsulta(String url) {
         System.out.println(">>> BUSCANDO EN CONTENTFUL (Cache falló o es nueva): " + url);
         return restTemplate.getForObject(url, String.class);

@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching; // Este import es clave
 
 @SpringBootApplication
-@EnableCaching
 public class BackendSaludApplication {
 
 	public static void main(String[] args) {
