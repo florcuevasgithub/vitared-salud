@@ -63,6 +63,7 @@ export class AppComponent implements OnInit {
   }
 
   cargarDatosFooter() {
+    // IMPORTANTE: Usar environment.apiUrl, NO "http://localhost:8080"
     this.http.get(`${environment.apiUrl}/api/categorias-footer`).subscribe({
       next: (res: any) => {
         if (res.items && res.includes) {
@@ -75,7 +76,7 @@ export class AppComponent implements OnInit {
           }));
         }
       },
-      error: (err) => console.error('Error Footer:', err)
+      error: (err) => console.error('Error cargando el Footer:', err)
     });
   }
 }
