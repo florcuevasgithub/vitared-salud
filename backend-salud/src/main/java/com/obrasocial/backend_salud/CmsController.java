@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.OPTIONS})
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api")
 public class CmsController {
@@ -17,15 +17,47 @@ public class CmsController {
     private String accessToken;
 
     @Autowired
-    private CmsService cmsService; // Inyectamos el servicio con caché
+    private CmsService cmsService;
 
+    // 1. Planes Médicos
     @GetMapping("/planes")
     public ResponseEntity<String> getPlanes() {
-        String url = "https://cdn.contentful.com/spaces/" + spaceId +
-                "/environments/master/entries?access_token=" + accessToken +
-                "&content_type=planMedico";
+        String url = construirUrl("planMedico");
         return ResponseEntity.ok(cmsService.ejecutarConsulta(url));
     }
 
-    // Puedemos repetir esto para /contenido, /categorias-footer, etc.
+    // 2. Cartilla Médica (Asegurate que en Contentful se llame 'medico')
+    @GetMapping("/cartilla")
+    public ResponseEntity<String> getCartilla() {
+        String url = construirUrl("medico");
+        return ResponseEntity.ok(cmsService.ejecutarConsulta(url));
+    }
+
+    // 3. Contenido General (Páginas, textos de la home)
+    @GetMapping("/contenido")
+    public ResponseEntity<String> getContenido() {
+        String url = construirUrl("contenido");
+        return ResponseEntity.ok(cmsService.ejecutarConsulta(url));
+    }
+
+    // 4. Empresas
+    @GetMapping("/empresas")
+    public ResponseEntity<String> getEmpresas() {
+        String url = construirUrl("empresa");
+        return ResponseEntity.ok(cmsService.ejecutarConsulta(url));
+    }
+
+    // 5. Footer
+    @GetMapping("/categorias-footer")
+    public ResponseEntity<String> getFooter() {
+        String url = construirUrl("categoriaFooter");
+        return ResponseEntity.ok(cmsService.ejecutarConsulta(url));
+    }
+
+    // Función auxiliar para no repetir código
+    private String construirUrl(String contentType) {
+        return "https://cdn.contentful.com/spaces/" + spaceId +
+                "/environments/master/entries?access_token=" + accessToken +
+                "&content_type=" + contentType;
+    }
 }
