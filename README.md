@@ -43,10 +43,6 @@ El flujo de información está diseñado bajo principios de ingeniería para max
 4. **Backend:** Ejecutar `./mvnw spring-boot:run` dentro de la carpeta del backend.
 5. **Frontend:** Ejecutar `npm install` y luego `ng serve` en la carpeta del frontend.
 
-## 📋 Próximos Pasos
-- [ ] Implementación de **Spring Security con JWT** para acceso de afiliados.
-- [ ] Formulario de contacto sanitizado para prevención de Inyecciones SQL.
-- [ ] Despliegue en entorno de staging (**Railway / Render**).
 
 ---
 *Proyecto desarrollado por Florencia Cuevas*
