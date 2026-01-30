@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-// El permiso "*" es clave para que Vercel pueda leer los datos
 @CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.OPTIONS})
 @RestController
 @RequestMapping("/api")
@@ -32,12 +31,12 @@ public class CmsController {
 
     @GetMapping("/contenido")
     public ResponseEntity<String> getContenido() {
-        return ResponseEntity.ok(cmsService.ejecutarConsulta(construirUrl("contenido")));
+        return ResponseEntity.ok(cmsService.ejecutarConsulta(construirUrl("paginaInformativa")));
     }
 
     @GetMapping("/empresas")
     public ResponseEntity<String> getEmpresas() {
-        return ResponseEntity.ok(cmsService.ejecutarConsulta(construirUrl("empresa")));
+        return ResponseEntity.ok(cmsService.ejecutarConsulta(construirUrl("empresaSocia")));
     }
 
     @GetMapping("/categorias-footer")
@@ -47,7 +46,7 @@ public class CmsController {
 
     @GetMapping("/banner")
     public ResponseEntity<String> getBanner() {
-        return ResponseEntity.ok(cmsService.ejecutarConsulta(construirUrl("banner")));
+        return ResponseEntity.ok(cmsService.ejecutarConsulta(construirUrl("healthcareHomepage")));
     }
 
     private String construirUrl(String contentType) {
