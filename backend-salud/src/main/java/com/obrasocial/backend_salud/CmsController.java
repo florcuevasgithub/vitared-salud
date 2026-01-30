@@ -5,7 +5,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+// El permiso "*" es clave para que Vercel pueda leer los datos
+@CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.OPTIONS})
 @RestController
 @RequestMapping("/api")
 public class CmsController {
@@ -19,42 +20,36 @@ public class CmsController {
     @Autowired
     private CmsService cmsService;
 
-    // 1. Planes Médicos
     @GetMapping("/planes")
     public ResponseEntity<String> getPlanes() {
-        String url = construirUrl("planMedico");
-        return ResponseEntity.ok(cmsService.ejecutarConsulta(url));
+        return ResponseEntity.ok(cmsService.ejecutarConsulta(construirUrl("planMedico")));
     }
 
-    // 2. Cartilla Médica (Asegurate que en Contentful se llame 'medico')
     @GetMapping("/cartilla")
     public ResponseEntity<String> getCartilla() {
-        String url = construirUrl("medico");
-        return ResponseEntity.ok(cmsService.ejecutarConsulta(url));
+        return ResponseEntity.ok(cmsService.ejecutarConsulta(construirUrl("medico")));
     }
 
-    // 3. Contenido General (Páginas, textos de la home)
     @GetMapping("/contenido")
     public ResponseEntity<String> getContenido() {
-        String url = construirUrl("contenido");
-        return ResponseEntity.ok(cmsService.ejecutarConsulta(url));
+        return ResponseEntity.ok(cmsService.ejecutarConsulta(construirUrl("contenido")));
     }
 
-    // 4. Empresas
     @GetMapping("/empresas")
     public ResponseEntity<String> getEmpresas() {
-        String url = construirUrl("empresa");
-        return ResponseEntity.ok(cmsService.ejecutarConsulta(url));
+        return ResponseEntity.ok(cmsService.ejecutarConsulta(construirUrl("empresa")));
     }
 
-    // 5. Footer
     @GetMapping("/categorias-footer")
     public ResponseEntity<String> getFooter() {
-        String url = construirUrl("categoriaFooter");
-        return ResponseEntity.ok(cmsService.ejecutarConsulta(url));
+        return ResponseEntity.ok(cmsService.ejecutarConsulta(construirUrl("categoriaFooter")));
     }
 
-    // Función auxiliar para no repetir código
+    @GetMapping("/banner")
+    public ResponseEntity<String> getBanner() {
+        return ResponseEntity.ok(cmsService.ejecutarConsulta(construirUrl("banner")));
+    }
+
     private String construirUrl(String contentType) {
         return "https://cdn.contentful.com/spaces/" + spaceId +
                 "/environments/master/entries?access_token=" + accessToken +

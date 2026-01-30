@@ -3,6 +3,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar';
+import { environment } from '../environments/environment'; // Verificá que esta ruta sea correcta
 
 @Component({
   selector: 'app-root',
@@ -17,52 +18,32 @@ import { NavbarComponent } from './components/navbar/navbar';
 
     <footer style="background: #002855; color: white; padding: 60px 50px; font-family: sans-serif;">
       <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; max-width: 1200px; margin: 0 auto;">
-
         <div *ngFor="let cat of categoriasFooter" style="min-width: 180px;">
-          <h4 style="margin-bottom: 20px; font-size: 1.1rem; color: #fff; text-transform: uppercase; letter-spacing: 1px;">
-            {{ cat.titulo }}
-          </h4>
-
+          <h4 style="margin-bottom: 20px; font-size: 1.1rem; color: #fff; text-transform: uppercase;">{{ cat.titulo }}</h4>
           <ul style="list-style: none; padding: 0; font-size: 0.9rem; line-height: 2;">
             <li *ngFor="let link of cat.enlaces">
-              <a [routerLink]="['/info', link.slug]"
-                 style="color: rgba(255,255,255,0.7); text-decoration: none; cursor: pointer; transition: 0.3s;"
-                 onmouseover="this.style.color='#fff'"
-                 onmouseout="this.style.color='rgba(255,255,255,0.7)'">
-                {{ link.titulo }}
-              </a>
+              <a [routerLink]="['/info', link.slug]" style="color: rgba(255,255,255,0.7); text-decoration: none;">{{ link.titulo }}</a>
             </li>
           </ul>
         </div>
-
         <div style="min-width: 220px;">
           <h4 style="margin-bottom: 20px;">Descargá nuestra APP</h4>
-          <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px;">
-
+          <div style="display: flex; flex-direction: column; gap: 10px;">
              <a *ngIf="linksApps?.appStoreLink" [href]="linksApps.appStoreLink" target="_blank">
-               <button style="background: black; color: white; padding: 10px; border-radius: 5px; border: 1px solid #444; width: 140px; cursor: pointer;">App Store</button>
+               <button style="background: black; color: white; padding: 10px; border-radius: 5px; cursor: pointer;">App Store</button>
              </a>
-
              <a *ngIf="linksApps?.googlePlayLink" [href]="linksApps.googlePlayLink" target="_blank">
-               <button style="background: black; color: white; padding: 10px; border-radius: 5px; border: 1px solid #444; width: 140px; cursor: pointer;">Google Play</button>
+               <button style="background: black; color: white; padding: 10px; border-radius: 5px; cursor: pointer;">Google Play</button>
              </a>
-
-          </div>
-          <div style="display: flex; gap: 15px; font-size: 1.2rem; opacity: 0.6;">
-            <span>f</span> <span>X</span> <span>in</span> <span>ig</span> <span>yt</span>
           </div>
         </div>
-      </div>
-
-      <div style="text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; opacity: 0.5;">
-        © 2026 VITARED SALUD. Todos los derechos reservados.
       </div>
     </footer>
   `
 })
 export class AppComponent implements OnInit {
   categoriasFooter: any[] = [];
-  linksApps: any; // Aquí guardamos los links de las tiendas
+  linksApps: any;
 
   constructor(private http: HttpClient, public router: Router) {}
 
@@ -71,37 +52,30 @@ export class AppComponent implements OnInit {
     this.cargarDatosFooter();
   }
 
-  // 1. Cargamos los links de las Apps desde el modelo del Banner
   cargarLinksTiendas() {
-    this.http.get('https://vitared-salud-production.up.railway.app/api/banner').subscribe({
+    // Usamos environment.apiUrl para evitar el error de localhost
+    this.http.get(`${environment.apiUrl}/api/banner`).subscribe({
       next: (res: any) => {
-        if (res.items && res.items.length > 0) {
-          this.linksApps = res.items[0].fields;
-        }
-      }
+        if (res.items && res.items.length > 0) this.linksApps = res.items[0].fields;
+      },
+      error: (err) => console.error('Error Banner:', err)
     });
   }
 
-  // 2. Cargamos las categorías y links del Footer
   cargarDatosFooter() {
-    this.http.get('https://vitared-salud-production.up.railway.app/api/categorias-footer').subscribe({
+    this.http.get(`${environment.apiUrl}/api/categorias-footer`).subscribe({
       next: (res: any) => {
-        if (res.items && res.includes && res.includes.Entry) {
-          this.categoriasFooter = res.items.map((cat: any) => {
-            const links = cat.fields.enlaces ? cat.fields.enlaces.map((linkRef: any) => {
+        if (res.items && res.includes) {
+          this.categoriasFooter = res.items.map((cat: any) => ({
+            titulo: cat.fields.titulo || 'Menú',
+            enlaces: cat.fields.enlaces ? cat.fields.enlaces.map((linkRef: any) => {
               const entry = res.includes.Entry.find((e: any) => e.sys.id === linkRef.sys.id);
               return entry ? { titulo: entry.fields.titulo, slug: entry.fields.slug } : null;
-            }).filter((l: any) => l !== null) : [];
-
-            return {
-              // Si no hay título en Contentful, usa 'Sobre nosotros' por defecto
-              titulo: cat.fields.sobreNosotros || cat.fields['Sobre nosotros'] || 'Sobre nosotros',
-              enlaces: links
-            };
-          });
+            }).filter((l: any) => l !== null) : []
+          }));
         }
       },
-      error: (err) => console.error('Error cargando el Footer:', err)
+      error: (err) => console.error('Error Footer:', err)
     });
   }
 }
