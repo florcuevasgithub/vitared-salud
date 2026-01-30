@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "*") // Esto permite que Vercel lea los datos
+@CrossOrigin(origins = {"https://vita-red-salud.vercel.app", "https://vita-salud.vercel.app"}, allowedHeaders = "*")
 @RestController
 @RequestMapping("/api")
 public class CmsController {

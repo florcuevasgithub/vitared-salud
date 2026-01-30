@@ -73,7 +73,7 @@ export class AppComponent implements OnInit {
 
   // 1. Cargamos los links de las Apps desde el modelo del Banner
   cargarLinksTiendas() {
-    this.http.get('http://localhost:8080/api/contenido').subscribe({
+    this.http.get('https://vitared-salud-production.up.railway.app').subscribe({
       next: (res: any) => {
         if (res.items && res.items.length > 0) {
           this.linksApps = res.items[0].fields;
@@ -84,7 +84,7 @@ export class AppComponent implements OnInit {
 
   // 2. Cargamos las categorías y links del Footer
   cargarDatosFooter() {
-    this.http.get('http://localhost:8080/api/categorias-footer').subscribe({
+    this.http.get('https://vitared-salud-production.up.railway.app/api/categorias-footer').subscribe({
       next: (res: any) => {
         if (res.items && res.includes && res.includes.Entry) {
           this.categoriasFooter = res.items.map((cat: any) => {
