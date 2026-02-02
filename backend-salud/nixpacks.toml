@@ -2,11 +2,11 @@
 nixPkgs = ["maven", "jdk17"]
 
 [phases.install]
-cmds = ["mvn clean install -DskipTests"]
+cmds = ["mvn dependency:go-offline"]
 
 [phases.build]
 cmds = ["mvn clean package -DskipTests"]
 
 [start]
-cmd = "java -jar target/backend-salud-1.0.0.jar"
+cmd = "java -Dserver.port=$PORT -jar target/backend-salud-1.0.0.jar"
 
