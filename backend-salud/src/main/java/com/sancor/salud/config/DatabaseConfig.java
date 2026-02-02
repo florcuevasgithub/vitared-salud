@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
-import javax.sql.DataSource;
+import jakarta.sql.DataSource;
 import java.net.URI;
 
 @Configuration
@@ -18,15 +18,16 @@ public class DatabaseConfig {
     @Bean
     @Primary
     public DataSource dataSource() {
+        // Si Railway proporciona DATABASE_URL, convertir de formato postgresql:// a jdbc:postgresql://
         if (databaseUrl != null && !databaseUrl.isEmpty() && !databaseUrl.startsWith("jdbc:")) {
-            // Railway proporciona DATABASE_URL en formato: postgresql://user:password@host:port/database
-            // Convertir a formato JDBC
             try {
+                // Railway usa formato: postgresql://user:password@host:port/database
                 URI dbUri = new URI(databaseUrl);
-                String username = dbUri.getUserInfo().split(":")[0];
-                String password = dbUri.getUserInfo().split(":")[1];
+                String[] userInfo = dbUri.getUserInfo().split(":");
+                String username = userInfo[0];
+                String password = userInfo.length > 1 ? userInfo[1] : "";
                 String host = dbUri.getHost();
-                int port = dbUri.getPort();
+                int port = dbUri.getPort() > 0 ? dbUri.getPort() : 5432;
                 String path = dbUri.getPath();
                 String dbName = path.startsWith("/") ? path.substring(1) : path;
                 
@@ -39,12 +40,12 @@ public class DatabaseConfig {
                         .driverClassName("org.postgresql.Driver")
                         .build();
             } catch (Exception e) {
-                // Si falla la conversión, usar configuración por defecto
+                // Si falla la conversión, Spring Boot usará la configuración por defecto de application.properties
+                System.err.println("Error parsing DATABASE_URL: " + e.getMessage());
                 return DataSourceBuilder.create().build();
             }
         }
-        // Si no hay DATABASE_URL o ya está en formato JDBC, usar configuración por defecto
+        // Si no hay DATABASE_URL o ya está en formato JDBC, Spring Boot usará application.properties
         return DataSourceBuilder.create().build();
     }
 }
-
