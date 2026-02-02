@@ -1,11 +1,15 @@
 [phases.setup]
-nixPkgs = ["maven", "jdk17"]
+nixPkgs = ["jdk17", "maven"]
+# Esto le da permiso de ejecución al archivo para que Railway pueda usarlo
+cmds = ["chmod +x mvnw"]
 
 [phases.install]
-cmds = ["mvn dependency:go-offline"]
+cmds = ["./mvnw dependency:go-offline"]
 
 [phases.build]
-cmds = ["mvn clean package -DskipTests"]
+dependsOn = ["setup"]
+cmds = ["./mvnw clean package -DskipTests"]
 
 [start]
-cmd = "java -jar target/backend-salud-1.0.0.jar"
+# El asterisco asegura que encuentre el .jar sin importar el nombre exacto de la versión
+cmd = "java -jar target/*.jar"
