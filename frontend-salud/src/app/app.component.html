@@ -1,0 +1,63 @@
+<div class="app">
+  <header class="app-header">
+    <h1>🏥 Aplicación de Salud</h1>
+    <p>Frontend desplegado en Railway</p>
+  </header>
+
+  <main class="app-main">
+    <div class="health-check">
+      <h2>Estado del Backend</h2>
+      <button (click)="checkHealth()" [disabled]="loading">
+        {{ loading ? 'Verificando...' : 'Verificar Conexión' }}
+      </button>
+
+      <div *ngIf="healthStatus" class="status success">
+        <p><strong>Estado:</strong> {{ healthStatus.status }}</p>
+        <p><strong>Mensaje:</strong> {{ healthStatus.message }}</p>
+      </div>
+
+      <div *ngIf="error" class="status error">
+        <p><strong>Error:</strong> {{ error }}</p>
+        <p>Verifica que el backend esté corriendo en: {{ apiUrl }}</p>
+      </div>
+    </div>
+
+    <div class="info">
+      <h3>Información del Deployment</h3>
+      <ul>
+        <li><strong>Frontend:</strong> Railway</li>
+        <li><strong>Backend:</strong> Railway</li>
+        <li><strong>API URL:</strong> {{ apiUrl }}</li>
+      </ul>
+    </div>
+
+    <div class="contenidos-medicos">
+      <h2>📚 Contenidos Médicos</h2>
+      <button (click)="cargarContenidos()" [disabled]="loadingContenidos">
+        {{ loadingContenidos ? 'Cargando...' : 'Recargar Contenidos' }}
+      </button>
+
+      <div *ngIf="loadingContenidos" class="status info">
+        <p>Cargando contenidos médicos...</p>
+      </div>
+
+      <div *ngIf="errorContenidos" class="status error">
+        <p><strong>Error:</strong> {{ errorContenidos }}</p>
+      </div>
+
+      <div *ngIf="!loadingContenidos && contenidos.length > 0" class="contenidos-grid">
+        <div *ngFor="let contenido of contenidos" class="contenido-card">
+          <h3>{{ contenido.titulo || 'Sin título' }}</h3>
+          <span *ngIf="contenido.categoria" class="badge">{{ contenido.categoria }}</span>
+          <p *ngIf="contenido.descripcion" class="descripcion">{{ contenido.descripcion }}</p>
+          <p *ngIf="contenido.contenido" class="contenido">{{ getContenidoPreview(contenido.contenido) }}</p>
+          <p *ngIf="contenido.tipo" class="tipo"><small>Tipo: {{ contenido.tipo }}</small></p>
+        </div>
+      </div>
+
+      <div *ngIf="!loadingContenidos && !errorContenidos && contenidos.length === 0" class="status info">
+        <p>No hay contenidos disponibles</p>
+      </div>
+    </div>
+  </main>
+</div>

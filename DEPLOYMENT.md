@@ -34,36 +34,36 @@ En la sección "Variables" de tu servicio backend, añade:
 
 ---
 
-## ▲ Deployment del Frontend en Vercel
+## 🚂 Deployment del Frontend en Railway
 
 ### Paso 1: Preparar el repositorio
 1. El frontend debe estar en la carpeta `frontend-salud/`
 
-### Paso 2: Crear proyecto en Vercel
-1. Ve a [vercel.com](https://vercel.com) e inicia sesión
-2. Clic en "Add New Project"
+### Paso 2: Crear servicio en Railway
+1. Ve a tu proyecto en Railway: https://railway.com/project/48126a3e-7efb-49eb-8628-860b5a247974
+2. Clic en "New" → "GitHub Repo"
 3. Conecta tu repositorio de GitHub
 4. En "Root Directory", selecciona `frontend-salud`
 
 ### Paso 3: Configurar Variables de Entorno
-En la sección "Environment Variables", añade:
-- `VITE_API_URL`: URL de tu backend en Railway (ej: `https://tu-backend.railway.app`)
+En la sección "Variables" de tu servicio frontend, añade:
+- `API_URL`: URL de tu backend en Railway (ej: `https://tu-backend.railway.app`)
 
-**Importante:** Asegúrate de añadir esta variable para todos los ambientes (Production, Preview, Development)
+**Importante:** No incluyas barra final (`/`) al final de la URL
 
 ### Paso 4: Configurar Build Settings
-Vercel debería detectar automáticamente:
-- Framework Preset: Vite
-- Build Command: `npm run build`
-- Output Directory: `dist`
-- Install Command: `npm install`
+Railway debería detectar automáticamente:
+- Framework: Angular (por `angular.json`)
+- Build Command: `npm install && npm run build`
+- Start Command: `npx serve -s dist/frontend-salud -l $PORT`
+- Output Directory: `dist/frontend-salud`
 
-Si no se detecta automáticamente, configúralo manualmente.
+Si no se detecta automáticamente, Railway usará `railway.json` y `nixpacks.toml`.
 
 ### Paso 5: Deploy
-1. Clic en "Deploy"
-2. Vercel construirá y desplegará tu aplicación
-3. Una vez completado, obtendrás la URL del frontend (ej: `https://tu-app.vercel.app`)
+1. Railway comenzará el build automáticamente
+2. Una vez completado, obtendrás la URL del frontend (ej: `https://tu-frontend.railway.app`)
+3. **IMPORTANTE:** Actualiza `FRONTEND_URL` en el servicio backend con esta nueva URL
 
 ---
 
@@ -72,10 +72,10 @@ Si no se detecta automáticamente, configúralo manualmente.
 ### Actualizar Variables de Entorno
 
 1. **En Railway (Backend):**
-   - Actualiza `FRONTEND_URL` con la URL real de Vercel
+   - Actualiza `FRONTEND_URL` con la URL real del frontend en Railway
 
-2. **En Vercel (Frontend):**
-   - Actualiza `VITE_API_URL` con la URL real de Railway
+2. **En Railway (Frontend):**
+   - Actualiza `API_URL` con la URL real del backend en Railway
 
 3. **Redeploy ambos servicios** para que los cambios surtan efecto
 
@@ -88,7 +88,7 @@ Si no se detecta automáticamente, configúralo manualmente.
    - Deberías ver: `{"status":"OK","message":"Backend Salud está funcionando"}`
 
 2. **Frontend:**
-   - Visita: `https://tu-app.vercel.app`
+   - Visita: `https://tu-frontend.railway.app`
    - Deberías ver la aplicación funcionando y conectada al backend
 
 ---
@@ -101,20 +101,21 @@ Si no se detecta automáticamente, configúralo manualmente.
 - Asegúrate de que el puerto esté configurado correctamente (Railway usa `PORT`)
 
 ### Frontend no se conecta al backend
-- Verifica que `VITE_API_URL` esté configurada correctamente en Vercel
+- Verifica que `API_URL` esté configurada correctamente en Railway (frontend)
 - Asegúrate de que el backend esté accesible públicamente
 - Revisa la configuración de CORS en el backend
 
 ### Errores de CORS
-- Verifica que `FRONTEND_URL` en Railway coincida exactamente con la URL de Vercel
+- Verifica que `FRONTEND_URL` en Railway (backend) coincida exactamente con la URL del frontend
 - Asegúrate de incluir el protocolo `https://` en las URLs
 
 ---
 
 ## 📝 Notas Importantes
 
-- **Railway** proporciona un dominio gratuito, pero puedes usar un dominio personalizado
-- **Vercel** también proporciona un dominio gratuito con SSL automático
-- Ambos servicios tienen planes gratuitos generosos para proyectos pequeños
+- **Railway** proporciona un dominio gratuito para ambos servicios (backend y frontend)
+- Puedes usar dominios personalizados si lo deseas
+- Railway tiene planes gratuitos generosos para proyectos pequeños
 - Las variables de entorno son críticas para que todo funcione correctamente
+- Ambos servicios (backend y frontend) están en Railway, lo que facilita la gestión
 

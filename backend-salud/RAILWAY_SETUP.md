@@ -51,3 +51,5 @@ Deberías recibir:
 - Asegúrate de configurar `FRONTEND_URL` con la URL exacta de Vercel
 - Incluye el protocolo `https://` en la URL
 
+
+

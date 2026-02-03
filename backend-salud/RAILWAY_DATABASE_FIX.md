@@ -74,3 +74,5 @@ Connection refused
 
 Si no necesitas base de datos inmediatamente (solo para el health check), la aplicación puede iniciar sin BD, pero necesitarás PostgreSQL para cualquier funcionalidad que use JPA.
 
+
+

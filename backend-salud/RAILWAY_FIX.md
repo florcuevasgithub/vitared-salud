@@ -37,3 +37,5 @@ Después del deploy, verifica:
 3. Verifica que `nixpacks.toml` esté presente
 4. Revisa los logs completos en Railway para ver el error exacto
 
+
+

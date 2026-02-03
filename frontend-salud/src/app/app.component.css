@@ -1,0 +1,219 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 2rem;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.app-header h1 {
+  font-size: 3rem;
+  margin: 0.5rem 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.app-header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.app-main {
+  max-width: 1200px;
+  width: 100%;
+}
+
+.health-check {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.health-check h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+.health-check button {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-bottom: 1.5rem;
+}
+
+.health-check button:hover:not(:disabled) {
+  background: #45a049;
+}
+
+.health-check button:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+}
+
+.status {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+}
+
+.status.success {
+  background: rgba(76, 175, 80, 0.2);
+  border: 1px solid #4CAF50;
+}
+
+.status.error {
+  background: rgba(244, 67, 54, 0.2);
+  border: 1px solid #f44336;
+}
+
+.status.info {
+  background: rgba(33, 150, 243, 0.2);
+  border: 1px solid #2196F3;
+}
+
+.status p {
+  margin: 0.5rem 0;
+}
+
+.info {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.info h3 {
+  margin-top: 0;
+}
+
+.info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.info li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info li:last-child {
+  border-bottom: none;
+}
+
+.contenidos-medicos {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.contenidos-medicos h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+.contenidos-medicos button {
+  background: #2196F3;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-bottom: 1.5rem;
+}
+
+.contenidos-medicos button:hover:not(:disabled) {
+  background: #1976D2;
+}
+
+.contenidos-medicos button:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+}
+
+.contenidos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.contenido-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.contenido-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.contenido-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  color: #fff;
+  font-size: 1.25rem;
+}
+
+.badge {
+  display: inline-block;
+  background: rgba(76, 175, 80, 0.3);
+  color: #4CAF50;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+}
+
+.contenido-card .descripcion {
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0.75rem 0;
+  line-height: 1.6;
+}
+
+.contenido-card .contenido {
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0.75rem 0;
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
+.contenido-card .tipo {
+  margin-top: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .contenidos-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .app-main {
+    max-width: 100%;
+  }
+}
