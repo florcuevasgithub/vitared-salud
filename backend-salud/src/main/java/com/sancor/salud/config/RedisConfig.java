@@ -15,13 +15,13 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @ConditionalOnProperty(name = "spring.redis.enabled", havingValue = "true", matchIfMissing = true)
 public class RedisConfig {
 
-    @Value("${spring.redis.host:localhost}")
+    @Value("${SPRING_DATA_REDIS_HOST:${REDIS_HOST:${spring.redis.host:localhost}}}")
     private String redisHost;
 
-    @Value("${spring.redis.port:6379}")
+    @Value("${SPRING_DATA_REDIS_PORT:${REDIS_PORT:${spring.redis.port:6379}}}")
     private int redisPort;
 
-    @Value("${spring.redis.password:}")
+    @Value("${REDIS_PASSWORD:${REDISPASSWORD:${spring.redis.password:}}}")
     private String redisPassword;
 
     @Bean

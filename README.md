@@ -1,6 +1,6 @@
 # Vitared Salud
 
-Proyecto de aplicación de salud con backend y frontend separados, desplegado en Railway (backend) y Vercel (frontend).
+Proyecto de aplicación de salud con backend y frontend separados, desplegado en Railway (backend y frontend).
 
 ## 🏗️ Estructura del Proyecto
 
@@ -11,10 +11,12 @@ vitared-salud/
 │   ├── pom.xml
 │   ├── railway.json    # Configuración Railway
 │   └── nixpacks.toml   # Build configuration
-├── frontend-salud/     # Frontend React + Vite
+├── frontend-salud/     # Frontend Angular 17
 │   ├── src/
 │   ├── package.json
-│   └── vercel.json     # Configuración Vercel
+│   ├── angular.json
+│   ├── railway.json    # Configuración Railway
+│   └── nixpacks.toml   # Build configuration
 └── DEPLOYMENT.md       # Guía completa de deployment
 ```
 
@@ -49,7 +51,8 @@ vitared-salud/
 
 ## 📖 Documentación
 
-- **[DEPLOYMENT.md](./DEPLOYMENT.md)** - Guía completa paso a paso para desplegar en Railway y Vercel
+- **[DEPLOYMENT.md](./DEPLOYMENT.md)** - Guía completa paso a paso para desplegar en Railway
+- **[RAILWAY_QUICK_SETUP.md](./RAILWAY_QUICK_SETUP.md)** - Guía rápida paso a paso para Railway
 - **[CONTENTFUL_REDIS_SETUP.md](./CONTENTFUL_REDIS_SETUP.md)** - Guía para configurar Contentful y Redis
 - **[CONFIGURACION_FINAL.md](./CONFIGURACION_FINAL.md)** - Configuración final y variables de entorno
 - **[backend-salud/README.md](./backend-salud/README.md)** - Documentación del backend
@@ -67,7 +70,7 @@ mvn spring-boot:run
 ```bash
 cd frontend-salud
 npm install
-npm run dev
+npm start
 ```
 
 ## 🔧 Variables de Entorno
@@ -79,7 +82,7 @@ npm run dev
 - `DATABASE_URL` - URL de PostgreSQL (automático)
 - `DB_USER` - Usuario de BD (automático)
 - `DB_PASSWORD` - Password de BD (automático)
-- `FRONTEND_URL` - URL del frontend en Vercel
+- `FRONTEND_URL` - URL del frontend en Railway
 
 #### Opcionales (Contentful)
 - `CONTENTFUL_ENABLED` - Habilita Contentful (default: false)
@@ -106,9 +109,9 @@ npm run dev
 ## 🎯 Características
 
 - ✅ Backend con Spring Boot y PostgreSQL
-- ✅ Frontend con React y Vite
+- ✅ Frontend con Angular 17
 - ✅ Integración con Contentful para gestión de contenidos médicos
 - ✅ Caché Redis para optimización de rendimiento
 - ✅ Arquitectura de alta disponibilidad
-- ✅ Deployment automático en Railway y Vercel
+- ✅ Deployment automático en Railway (backend y frontend)
 
