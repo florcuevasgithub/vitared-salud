@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "serve": "npx serve -s dist/frontend-salud/browser -l"
   },
   "private": true,
   "dependencies": {

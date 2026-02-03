@@ -8,4 +8,4 @@ cmds = ["npm install"]
 cmds = ["npm run build"]
 
 [start]
-cmd = "npx serve -s dist/frontend-salud/browser -l $PORT"
+cmd = "npm run serve $PORT"
