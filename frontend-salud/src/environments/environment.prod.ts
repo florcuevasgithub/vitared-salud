@@ -1,15 +1,7 @@
-// En Railway, las variables de entorno se inyectan en tiempo de build
-// Para producción, usa la variable de entorno API_URL o el valor por defecto
-declare const process: {
-  env: {
-    [key: string]: string;
-  };
-};
+// Este archivo será modificado automáticamente por el script replace-env.js
+// antes del build en Vercel usando la variable NG_APP_API_URL
 
 export const environment = {
   production: true,
-  // Railway inyectará API_URL durante el build
-  apiUrl: (typeof process !== 'undefined' && process.env && process.env['API_URL']) 
-    ? process.env['API_URL'] 
-    : 'https://vitared-salud-production.up.railway.app'
+  apiUrl: 'https://backend-salud.onrender.com' // Será reemplazado por el script de build
 };

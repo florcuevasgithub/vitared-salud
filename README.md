@@ -1,6 +1,6 @@
 # Vitared Salud
 
-Proyecto de aplicación de salud con backend y frontend separados, desplegado en Railway (backend y frontend).
+Proyecto de aplicación de salud con backend y frontend separados, desplegado en **Render** (backend) y **Vercel** (frontend).
 
 ## 🏗️ Estructura del Proyecto
 
@@ -9,14 +9,12 @@ vitared-salud/
 ├── backend-salud/      # Backend Spring Boot (Java 17)
 │   ├── src/
 │   ├── pom.xml
-│   ├── railway.json    # Configuración Railway
-│   └── nixpacks.toml   # Build configuration
+│   └── render.yaml     # Configuración Render
 ├── frontend-salud/     # Frontend Angular 17
 │   ├── src/
 │   ├── package.json
 │   ├── angular.json
-│   ├── railway.json    # Configuración Railway
-│   └── nixpacks.toml   # Build configuration
+│   └── vercel.json     # Configuración Vercel
 └── DEPLOYMENT.md       # Guía completa de deployment
 ```
 
@@ -39,22 +37,26 @@ vitared-salud/
 
 ## 📦 Deployment
 
-### Backend → Railway
-- Configurado con `nixpacks.toml` y `railway.json`
-- Base de datos PostgreSQL incluida
+### Backend → Render
+- Configurado con `render.yaml`
+- Base de datos PostgreSQL gratuita incluida
+- Redis gratuito incluido
 - Variables de entorno automáticas
+- ⚠️ Plan gratuito: se "duerme" después de 15 min de inactividad
 
-### Frontend → Railway
-- Configurado con `railway.json` y `nixpacks.toml`
+### Frontend → Vercel
+- Configurado con `vercel.json`
 - Build automático con Angular CLI
-- Variables de entorno para API
+- CDN global
+- SSL automático
+- ✅ No se duerme (siempre disponible)
 
 ## 📖 Documentación
 
-- **[DEPLOYMENT.md](./DEPLOYMENT.md)** - Guía completa paso a paso para desplegar en Railway
-- **[RAILWAY_QUICK_SETUP.md](./RAILWAY_QUICK_SETUP.md)** - Guía rápida paso a paso para Railway
+- **[VERCEL_SETUP.md](./VERCEL_SETUP.md)** - Guía paso a paso para desplegar frontend en Vercel
+- **[RENDER_SETUP.md](./RENDER_SETUP.md)** - Guía paso a paso para desplegar backend en Render
 - **[CONTENTFUL_REDIS_SETUP.md](./CONTENTFUL_REDIS_SETUP.md)** - Guía para configurar Contentful y Redis
-- **[CONFIGURACION_FINAL.md](./CONFIGURACION_FINAL.md)** - Configuración final y variables de entorno
+- **[ALTERNATIVAS_GRATUITAS_DEPLOY.md](./ALTERNATIVAS_GRATUITAS_DEPLOY.md)** - Comparación de alternativas
 - **[backend-salud/README.md](./backend-salud/README.md)** - Documentación del backend
 - **[frontend-salud/README.md](./frontend-salud/README.md)** - Documentación del frontend
 
@@ -75,14 +77,12 @@ npm start
 
 ## 🔧 Variables de Entorno
 
-### Backend (Railway)
+### Backend (Render)
 
 #### Requeridas
 - `PORT` - Puerto del servidor (automático)
-- `DATABASE_URL` - URL de PostgreSQL (automático)
-- `DB_USER` - Usuario de BD (automático)
-- `DB_PASSWORD` - Password de BD (automático)
-- `FRONTEND_URL` - URL del frontend en Railway
+- `DATABASE_URL` - URL de PostgreSQL (automático, al conectar BD)
+- `FRONTEND_URL` - URL del frontend en Vercel
 
 #### Opcionales (Contentful)
 - `CONTENTFUL_ENABLED` - Habilita Contentful (default: false)
@@ -92,19 +92,20 @@ npm start
 
 #### Opcionales (Redis)
 - `REDIS_ENABLED` - Habilita Redis (default: true)
-- `REDIS_HOST` - Host de Redis (default: localhost)
-- `REDIS_PORT` - Puerto de Redis (default: 6379)
-- `REDIS_PASSWORD` - Password de Redis (opcional)
+- `SPRING_REDIS_HOST` - Host de Redis (automático al conectar Redis)
+- `SPRING_REDIS_PORT` - Puerto de Redis (automático al conectar Redis)
+- `REDIS_PASSWORD` - Password de Redis (automático al conectar Redis)
 
-### Frontend (Railway)
-- `API_URL` - URL del backend en Railway
+### Frontend (Vercel)
+- `NG_APP_API_URL` - URL del backend en Render
 
 ## 📝 Próximos Pasos
 
-1. Sigue la guía en [DEPLOYMENT.md](./DEPLOYMENT.md) para desplegar
-2. Configura las variables de entorno en ambos servicios
-3. (Opcional) Configura Contentful y Redis siguiendo [CONTENTFUL_REDIS_SETUP.md](./CONTENTFUL_REDIS_SETUP.md)
-4. ¡Listo! Tu aplicación estará en producción
+1. Sigue la guía en [VERCEL_SETUP.md](./VERCEL_SETUP.md) para desplegar el frontend
+2. Sigue la guía en [RENDER_SETUP.md](./RENDER_SETUP.md) para desplegar el backend
+3. Configura las variables de entorno en ambos servicios
+4. (Opcional) Configura Contentful y Redis siguiendo [CONTENTFUL_REDIS_SETUP.md](./CONTENTFUL_REDIS_SETUP.md)
+5. ¡Listo! Tu aplicación estará en producción
 
 ## 🎯 Características
 
@@ -113,5 +114,6 @@ npm start
 - ✅ Integración con Contentful para gestión de contenidos médicos
 - ✅ Caché Redis para optimización de rendimiento
 - ✅ Arquitectura de alta disponibilidad
-- ✅ Deployment automático en Railway (backend y frontend)
+- ✅ Deployment automático en Render (backend) y Vercel (frontend)
+- ✅ Planes gratuitos disponibles para ambos servicios
 

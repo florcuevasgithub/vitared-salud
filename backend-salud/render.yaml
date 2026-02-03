@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: backend-salud
+    env: java
+    buildCommand: ./mvnw clean package -DskipTests
+    startCommand: java -jar target/*.jar
+    envVars:
+      - key: PORT
+        sync: false
+      - key: FRONTEND_URL
+        value: https://tu-frontend.vercel.app  # Actualizar después de deployar frontend
+      - key: CONTENTFUL_ENABLED
+        value: "true"
+      - key: CONTENTFUL_SPACE_ID
+        value: wvf5ctjvbuns
+      - key: CONTENTFUL_ACCESS_TOKEN
+        value: 0326UXZfUPJQkdHPDTaVdt  # Actualizar con tu token real
+      - key: CONTENTFUL_ENVIRONMENT
+        value: master
+      - key: REDIS_ENABLED
+        value: "true"
+
+databases:
+  - name: postgres-salud
+    databaseName: salud
+    user: salud_user
+    plan: free
+
+  - name: redis-salud
+    plan: free
+    type: redis
