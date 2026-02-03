@@ -1,12 +1,14 @@
 # Dockerfile para Spring Boot en Render
-FROM eclipse-temurin:17-jdk-alpine
+# Usa multi-stage build: construir con Maven, ejecutar con JRE
 
+# Stage 1: Build
+FROM maven:3.9-eclipse-temurin-17 AS build
 WORKDIR /app
 
 # Copiar archivos Maven
+COPY pom.xml .
 COPY mvnw .
 COPY .mvn .mvn
-COPY pom.xml .
 COPY src src
 
 # Dar permisos de ejecución a mvnw
@@ -15,8 +17,12 @@ RUN chmod +x ./mvnw
 # Construir la aplicación
 RUN ./mvnw clean package -DskipTests
 
-# Encontrar el JAR generado
-RUN find target -name "*.jar" -not -name "*sources.jar" -exec cp {} app.jar \;
+# Stage 2: Runtime
+FROM eclipse-temurin:17-jre-alpine
+WORKDIR /app
+
+# Copiar el JAR desde el stage de build
+COPY --from=build /app/target/*.jar app.jar
 
 # Exponer el puerto
 EXPOSE 8080
