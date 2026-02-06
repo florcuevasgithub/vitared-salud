@@ -3,5 +3,5 @@
 
 export const environment = {
   production: true,
-  apiUrl: 'https://backend-salud.onrender.com' // Será reemplazado por el script de build
+  apiUrl: 'https://backend-salud-lhq8.onrender.com' // URL real del backend en Render
 };
