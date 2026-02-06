@@ -27,8 +27,8 @@ import { NavbarComponent } from './components/navbar/navbar';
             <li *ngFor="let link of cat.enlaces">
               <a [routerLink]="['/info', link.slug]"
                  style="color: rgba(255,255,255,0.7); text-decoration: none; cursor: pointer; transition: 0.3s;"
-                 (mouseenter)="$event.target.style.color='#fff'"
-                 (mouseleave)="$event.target.style.color='rgba(255,255,255,0.7)'">
+                 (mouseenter)="$any($event.target).style.color='#fff'"
+                 (mouseleave)="$any($event.target).style.color='rgba(255,255,255,0.7)'">
                 {{ link.titulo }}
               </a>
             </li>
