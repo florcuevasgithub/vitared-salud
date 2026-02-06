@@ -1,0 +1,16 @@
+<div class="info-container">
+  <div *ngIf="pagina; else loading" class="info-content">
+    <p class="info-category">Sobre nosotros</p>
+    <h1>{{ pagina.fields.titulo }}</h1>
+    <div class="info-divider"></div>
+    <div class="info-text">
+      {{ pagina.fields.contenido }}
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <div class="loading">
+      <p>Cargando información de VITARED SALUD...</p>
+    </div>
+  </ng-template>
+</div>

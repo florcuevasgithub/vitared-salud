@@ -1,0 +1,22 @@
+<div class="cartilla-container">
+  <div class="cartilla-content">
+    <h2>Cartilla Médica</h2>
+
+    <div *ngIf="listaMedicos.length > 0; else noData" class="medicos-list">
+      <div *ngFor="let medico of listaMedicos" class="medico-card">
+        <div class="medico-info">
+          <h3>{{ medico.fields.nombre }}</h3>
+          <p class="especialidad">{{ medico.fields.especialidad }}</p>
+          <p class="direccion">📍 {{ medico.fields.direccion }}</p>
+        </div>
+        <button class="ver-disponibilidad-btn">Ver Disponibilidad</button>
+      </div>
+    </div>
+
+    <ng-template #noData>
+      <div class="no-data">
+        <p>No se encontraron profesionales en la cartilla médica.</p>
+      </div>
+    </ng-template>
+  </div>
+</div>

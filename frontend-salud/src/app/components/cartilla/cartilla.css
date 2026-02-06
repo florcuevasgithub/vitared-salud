@@ -1,0 +1,93 @@
+.cartilla-container {
+  padding: 40px;
+  font-family: sans-serif;
+  background: #f4f7f6;
+  min-height: 90vh;
+}
+
+.cartilla-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cartilla-content h2 {
+  color: #005AAB;
+  font-size: 2rem;
+  border-bottom: 2px solid #005AAB;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+}
+
+.medicos-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.medico-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.medico-info h3 {
+  margin: 0;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.especialidad {
+  margin: 5px 0;
+  color: #005AAB;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.direccion {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.ver-disponibilidad-btn {
+  background: transparent;
+  border: 1px solid #005AAB;
+  color: #005AAB;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.ver-disponibilidad-btn:hover {
+  background: #005AAB;
+  color: white;
+}
+
+.no-data {
+  text-align: center;
+  padding: 50px;
+  color: #888;
+}
+
+@media (max-width: 768px) {
+  .cartilla-container {
+    padding: 20px;
+  }
+  
+  .medico-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .ver-disponibilidad-btn {
+    width: 100%;
+  }
+}

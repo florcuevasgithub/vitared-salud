@@ -1,0 +1,105 @@
+.main-footer {
+  background: #002855;
+  color: white;
+  padding: 60px 50px;
+  font-family: sans-serif;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.footer-section {
+  min-width: 180px;
+}
+
+.footer-section h4 {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  font-size: 0.9rem;
+  line-height: 2;
+}
+
+.footer-section ul li a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+  color: #fff;
+}
+
+.apps-section {
+  min-width: 220px;
+}
+
+.apps-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.app-button {
+  background: black;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #444;
+  width: 140px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.app-button:hover {
+  background: #333;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  font-size: 1.2rem;
+  opacity: 0.6;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 50px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.8rem;
+  opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+  .main-footer {
+    padding: 40px 20px;
+  }
+  
+  .footer-content {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .footer-section {
+    min-width: 100%;
+  }
+}

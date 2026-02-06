@@ -1,0 +1,21 @@
+<div class="planes-container">
+  <h2>Nuestros Planes Médicos</h2>
+
+  <div class="planes-grid">
+    <div *ngFor="let plan of listaPlanes" class="plan-card">
+      <h3>{{ plan.fields.nombre }}</h3>
+      <div class="plan-precio">
+        <span class="precio">$ {{ plan.fields.precio }}</span>
+        <span class="periodo">/ mes</span>
+      </div>
+      <p class="beneficios-title">Beneficios:</p>
+      <ul class="beneficios-list">
+        <li *ngFor="let item of plan.fields.beneficios.split(',')">
+          <span class="check">✓</span>
+          {{ item.trim() }}
+        </li>
+      </ul>
+      <button class="interes-btn">¡Me interesa!</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,146 @@
+.hero-section {
+  padding: 60px 50px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  font-family: sans-serif;
+}
+
+.hero-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.hero-text {
+  max-width: 500px;
+  text-align: left;
+}
+
+.hero-text h1 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+.hero-text p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  opacity: 0.9;
+}
+
+.hero-text button {
+  padding: 15px 30px;
+  cursor: pointer;
+  border-radius: 8px;
+  border: none;
+  background: white;
+  color: #005AAB;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: transform 0.3s;
+}
+
+.hero-text button:hover {
+  transform: scale(1.05);
+}
+
+.hero-image img {
+  max-width: 450px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.empresas-section {
+  padding: 80px 0;
+  background: #fff;
+  text-align: center;
+  font-family: sans-serif;
+}
+
+.empresas-section h2 {
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+}
+
+.empresas-section .highlight {
+  color: #005AAB;
+  font-weight: bold;
+}
+
+.empresas-section p {
+  color: #666;
+  margin-bottom: 50px;
+}
+
+.empresas-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.empresa-card {
+  background: #f8f9fa;
+  padding: 25px;
+  border-radius: 15px;
+  border: 1px solid #eee;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+}
+
+.empresa-logo {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.empresa-logo img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.empresa-card span {
+  font-size: 0.9rem;
+  color: #555;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 40px 20px;
+    flex-direction: column;
+  }
+  
+  .hero-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .hero-text {
+    text-align: center;
+  }
+  
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-image img {
+    max-width: 100%;
+  }
+}

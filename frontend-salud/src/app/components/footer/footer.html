@@ -1,0 +1,33 @@
+<footer class="main-footer">
+  <div class="footer-container">
+    <div class="footer-content">
+      <div *ngFor="let cat of categoriasFooter" class="footer-section">
+        <h4>{{ cat.titulo }}</h4>
+        <ul>
+          <li *ngFor="let link of cat.enlaces">
+            <a [routerLink]="['/info', link.slug]">{{ link.titulo }}</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-section apps-section">
+        <h4>Descargá nuestra APP</h4>
+        <div class="apps-buttons">
+          <a *ngIf="linksApps?.appStoreLink" [href]="linksApps.appStoreLink" target="_blank">
+            <button class="app-button">App Store</button>
+          </a>
+          <a *ngIf="linksApps?.googlePlayLink" [href]="linksApps.googlePlayLink" target="_blank">
+            <button class="app-button">Google Play</button>
+          </a>
+        </div>
+        <div class="social-icons">
+          <span>f</span> <span>X</span> <span>in</span> <span>ig</span> <span>yt</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 VITARED SALUD. Todos los derechos reservados.
+    </div>
+  </div>
+</footer>

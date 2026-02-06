@@ -1,0 +1,28 @@
+<div *ngIf="datos" class="hero-section" [style.backgroundColor]="datos.fields.heroBackgroundColor">
+  <div class="hero-content">
+    <div class="hero-text">
+      <h1>{{ datos.fields.heroTitle }}</h1>
+      <p>{{ datos.fields.heroSubtitle }}</p>
+      <button>{{ datos.fields.heroCtaButtonText }}</button>
+    </div>
+    <div *ngIf="imageUrl" class="hero-image">
+      <img [src]="imageUrl" alt="Hero">
+    </div>
+  </div>
+</div>
+
+<div class="empresas-section">
+  <h2>
+    Empresas que integran <span class="highlight">VITARED SALUD</span>
+  </h2>
+  <p>Disfrutá los beneficios de ser parte de nuestra red.</p>
+
+  <div class="empresas-grid">
+    <div *ngFor="let emp of empresas" class="empresa-card">
+      <div class="empresa-logo">
+        <img [src]="emp.urlLogo" [alt]="emp.nombre">
+      </div>
+      <span>{{ emp.nombre }}</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,110 @@
+.planes-container {
+  padding: 40px;
+  font-family: sans-serif;
+  background: #f4f7f6;
+  min-height: 90vh;
+}
+
+.planes-container h2 {
+  text-align: center;
+  color: #005AAB;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+}
+
+.planes-grid {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.plan-card {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  width: 300px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border-top: 8px solid #005AAB;
+}
+
+.plan-card h3 {
+  color: #005AAB;
+  font-size: 1.8rem;
+  margin: 0 0 20px 0;
+}
+
+.plan-precio {
+  margin: 20px 0;
+}
+
+.precio {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.periodo {
+  color: #888;
+}
+
+.beneficios-title {
+  font-weight: bold;
+  color: #444;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  margin-top: 20px;
+}
+
+.beneficios-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.beneficios-list li {
+  margin-bottom: 12px;
+  color: #555;
+  display: flex;
+  align-items: flex-start;
+}
+
+.check {
+  color: #28a745;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.interes-btn {
+  margin-top: 30px;
+  width: 100%;
+  padding: 15px;
+  background: #005AAB;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.interes-btn:hover {
+  background: #004080;
+}
+
+@media (max-width: 768px) {
+  .planes-container {
+    padding: 20px;
+  }
+  
+  .planes-container h2 {
+    font-size: 2rem;
+  }
+  
+  .plan-card {
+    width: 100%;
+    max-width: 400px;
+  }
+}
