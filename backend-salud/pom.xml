@@ -79,12 +79,18 @@
             <artifactId>jedis</artifactId>
         </dependency>
 
-        <!-- Contentful Java SDK -->
+        <!-- Contentful Java SDK (TEMPORALMENTE COMENTADO - versión no encontrada en Maven Central) -->
+        <!-- TODO: Encontrar la versión correcta del SDK de Contentful -->
+        <!-- El código funciona sin esta dependencia usando datos mock cuando contentful.enabled=false -->
+        <!-- Para habilitar Contentful, descomentar y usar la versión correcta -->
+        <!--
         <dependency>
             <groupId>com.contentful.java</groupId>
             <artifactId>java-sdk</artifactId>
-            <version>10.12.0</version>
+            <version>10.10.0</version>
+            <optional>true</optional>
         </dependency>
+        -->
 
         <!-- Jackson for JSON processing -->
         <dependency>

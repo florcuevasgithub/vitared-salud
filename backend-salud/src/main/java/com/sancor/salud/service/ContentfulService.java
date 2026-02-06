@@ -1,8 +1,5 @@
 package com.sancor.salud.service;
 
-import com.contentful.java.cda.CDAClient;
-import com.contentful.java.cda.CDAEntry;
-import com.contentful.java.cda.CDAResource;
 import com.sancor.salud.model.ContenidoMedico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -14,13 +11,13 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class ContentfulService {
 
-    private final CDAClient contentfulClient;
+    private final Object contentfulClient; // Cambiado a Object para evitar dependencia directa
     private final RedisTemplate<String, Object> redisTemplate;
     private static final String CACHE_PREFIX = "contentful:";
     private static final long CACHE_TTL_HOURS = 1; // TTL de 1 hora
 
     @Autowired(required = false)
-    public ContentfulService(CDAClient contentfulClient, RedisTemplate<String, Object> redisTemplate) {
+    public ContentfulService(Object contentfulClient, RedisTemplate<String, Object> redisTemplate) {
         this.contentfulClient = contentfulClient;
         this.redisTemplate = redisTemplate;
     }
@@ -167,6 +164,11 @@ public class ContentfulService {
     // Métodos privados para obtener datos de Contentful
 
     private List<ContenidoMedico> obtenerDeContentful() {
+        // Contentful SDK temporalmente no disponible - usando datos mock
+        System.out.println("⚠️ Contentful SDK no disponible. Retornando datos mock.");
+        return obtenerDatosMock();
+        
+        /* Código original comentado - descomentar cuando Contentful SDK esté disponible
         if (contentfulClient == null) {
             System.out.println("⚠️ Contentful no configurado. Retornando datos mock.");
             return obtenerDatosMock();
@@ -188,9 +190,15 @@ public class ContentfulService {
             e.printStackTrace();
             return obtenerDatosMock();
         }
+        */
     }
 
     private ContenidoMedico obtenerDeContentfulPorId(String id) {
+        // Contentful SDK temporalmente no disponible - usando datos mock
+        System.out.println("⚠️ Contentful SDK no disponible. Retornando datos mock.");
+        return obtenerDatoMockPorId(id);
+        
+        /* Código original comentado - descomentar cuando Contentful SDK esté disponible
         if (contentfulClient == null) {
             System.out.println("⚠️ Contentful no configurado. Retornando datos mock.");
             return obtenerDatoMockPorId(id);
@@ -206,9 +214,15 @@ public class ContentfulService {
             e.printStackTrace();
             return obtenerDatoMockPorId(id);
         }
+        */
     }
 
     private List<ContenidoMedico> obtenerDeContentfulPorTipo(String tipo) {
+        // Contentful SDK temporalmente no disponible - usando datos mock
+        System.out.println("⚠️ Contentful SDK no disponible. Retornando datos mock.");
+        return obtenerDatosMockPorTipo(tipo);
+        
+        /* Código original comentado - descomentar cuando Contentful SDK esté disponible
         if (contentfulClient == null) {
             System.out.println("⚠️ Contentful no configurado. Retornando datos mock.");
             return obtenerDatosMockPorTipo(tipo);
@@ -231,8 +245,10 @@ public class ContentfulService {
             e.printStackTrace();
             return obtenerDatosMockPorTipo(tipo);
         }
+        */
     }
 
+    /* Método comentado temporalmente - descomentar cuando Contentful SDK esté disponible
     private ContenidoMedico convertirEntryAContenidoMedico(CDAEntry entry) {
         ContenidoMedico contenido = new ContenidoMedico();
         contenido.setId(entry.id());
@@ -261,6 +277,7 @@ public class ContentfulService {
         contenido.setMetadata(fields);
         return contenido;
     }
+    */
 
     // Datos mock para cuando Contentful no está configurado
     private List<ContenidoMedico> obtenerDatosMock() {
