@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
+import { HeaderComponent } from './header/header';
+import { NavbarComponent } from './navbar/navbar';
+import { FooterComponent } from './footer/footer';
 
 interface HealthStatus {
   status: string;
@@ -29,7 +32,7 @@ interface ContenidosResponse {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HeaderComponent, NavbarComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

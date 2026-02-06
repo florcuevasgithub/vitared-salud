@@ -1,0 +1,41 @@
+<footer class="main-footer">
+  <div class="footer-container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Vitared Salud</h3>
+        <p>Tu salud, nuestra prioridad. Comprometidos con tu bienestar y el de tu familia.</p>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Empresa</h4>
+        <ul>
+          <li *ngFor="let link of footerLinks.empresa">
+            <a [href]="link.link">{{ link.label }}</a>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Servicios</h4>
+        <ul>
+          <li *ngFor="let link of footerLinks.servicios">
+            <a [href]="link.link">{{ link.label }}</a>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Contacto</h4>
+        <ul>
+          <li *ngFor="let link of footerLinks.contacto">
+            <a [href]="link.link">{{ link.label }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; {{ currentYear }} Vitared Salud. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>

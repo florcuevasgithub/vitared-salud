@@ -1,13 +1,11 @@
-<div class="app">
-  <header class="app-header">
-    <h1>🏥 Aplicación de Salud</h1>
-    <p>Frontend desplegado en Railway</p>
-  </header>
+<app-header></app-header>
+<app-navbar></app-navbar>
 
-  <main class="app-main">
+<main class="app-main">
+  <div class="content-wrapper">
     <div class="health-check">
       <h2>Estado del Backend</h2>
-      <button (click)="checkHealth()" [disabled]="loading">
+      <button (click)="checkHealth()" [disabled]="loading" class="btn-primary">
         {{ loading ? 'Verificando...' : 'Verificar Conexión' }}
       </button>
 
@@ -22,18 +20,9 @@
       </div>
     </div>
 
-    <div class="info">
-      <h3>Información del Deployment</h3>
-      <ul>
-        <li><strong>Frontend:</strong> Railway</li>
-        <li><strong>Backend:</strong> Railway</li>
-        <li><strong>API URL:</strong> {{ apiUrl }}</li>
-      </ul>
-    </div>
-
     <div class="contenidos-medicos">
       <h2>📚 Contenidos Médicos</h2>
-      <button (click)="cargarContenidos()" [disabled]="loadingContenidos">
+      <button (click)="cargarContenidos()" [disabled]="loadingContenidos" class="btn-secondary">
         {{ loadingContenidos ? 'Cargando...' : 'Recargar Contenidos' }}
       </button>
 
@@ -59,5 +48,7 @@
         <p>No hay contenidos disponibles</p>
       </div>
     </div>
-  </main>
-</div>
+  </div>
+</main>
+
+<app-footer></app-footer>
