@@ -1,26 +1,15 @@
 {
-  "buildCommand": "npm install && npm run build",
-  "outputDirectory": "dist/frontend-salud/browser",
-  "devCommand": "npm start",
+  "version": 2,
+  "buildCommand": "cd frontend-salud && npm install && npm run build",
+  "outputDirectory": "frontend-salud/dist/frontend-salud/browser",
+  "installCommand": "cd frontend-salud && npm install",
   "framework": null,
-  "installCommand": "npm install",
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
     {
       "source": "/(.*)",
       "destination": "/index.html"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "no-cache, no-store, must-revalidate"
-        }
-      ]
     }
   ]
 }
