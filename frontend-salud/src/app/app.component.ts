@@ -9,6 +9,7 @@ import { FooterComponent } from './components/footer/footer';
   standalone: true,
   imports: [CommonModule, RouterModule, NavbarComponent, FooterComponent],
   template: `
+    <!-- VITARED SALUD - Diseño Nuevo -->
     <app-navbar></app-navbar>
     <main class="main-content">
       <router-outlet></router-outlet>
@@ -17,4 +18,8 @@ import { FooterComponent } from './components/footer/footer';
   `,
   styles: []
 })
-export class AppComponent {}
+export class AppComponent {
+  constructor() {
+    console.log('✅ AppComponent cargado - Diseño Vitared Salud');
+  }
+}
