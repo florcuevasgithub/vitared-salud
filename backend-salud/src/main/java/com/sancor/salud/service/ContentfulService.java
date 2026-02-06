@@ -11,14 +11,12 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class ContentfulService {
 
-    private final Object contentfulClient; // Cambiado a Object para evitar dependencia directa
     private final RedisTemplate<String, Object> redisTemplate;
     private static final String CACHE_PREFIX = "contentful:";
     private static final long CACHE_TTL_HOURS = 1; // TTL de 1 hora
 
     @Autowired(required = false)
-    public ContentfulService(Object contentfulClient, RedisTemplate<String, Object> redisTemplate) {
-        this.contentfulClient = contentfulClient;
+    public ContentfulService(RedisTemplate<String, Object> redisTemplate) {
         this.redisTemplate = redisTemplate;
     }
 

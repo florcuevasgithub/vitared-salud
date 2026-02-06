@@ -19,6 +19,9 @@ public class ContentfulConfig {
     @Value("${contentful.environment:master}")
     private String environment;
 
+    // Bean comentado temporalmente - Contentful SDK no disponible
+    // Cuando el SDK esté disponible, descomentar y usar el método original comentado abajo
+    /*
     @Bean
     @ConditionalOnProperty(name = "contentful.enabled", havingValue = "true", matchIfMissing = false)
     public Object contentfulClient() {
@@ -45,6 +48,7 @@ public class ContentfulConfig {
             return null;
         }
     }
+    */
     
     // Método original comentado - descomentar cuando la dependencia esté disponible
     /*
