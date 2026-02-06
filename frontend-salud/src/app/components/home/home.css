@@ -1,112 +1,152 @@
+/* Hero Section */
 .hero-section {
-  padding: 60px 50px;
+  padding: 80px 50px;
   color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-  font-family: sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 90, 171, 0.9) 0%, rgba(0, 61, 122, 0.9) 100%);
+  z-index: 1;
+}
+
+.hero-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
 }
 
 .hero-content {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 40px;
-  max-width: 1200px;
-  width: 100%;
+  justify-content: space-between;
+  gap: 60px;
 }
 
 .hero-text {
-  max-width: 500px;
-  text-align: left;
+  flex: 1;
+  max-width: 600px;
 }
 
 .hero-text h1 {
-  font-size: 2.8rem;
-  margin-bottom: 20px;
-  line-height: 1.1;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  line-height: 1.2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .hero-text p {
-  font-size: 1.2rem;
-  margin-bottom: 30px;
-  opacity: 0.9;
+  font-size: 1.25rem;
+  margin-bottom: 32px;
+  opacity: 0.95;
+  line-height: 1.6;
 }
 
-.hero-text button {
-  padding: 15px 30px;
-  cursor: pointer;
-  border-radius: 8px;
-  border: none;
-  background: white;
+.hero-button {
+  padding: 16px 32px;
+  font-size: 1.1rem;
+  font-weight: 600;
   color: #005AAB;
-  font-weight: bold;
-  font-size: 1rem;
-  transition: transform 0.3s;
+  background: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.hero-text button:hover {
-  transform: scale(1.05);
+.hero-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  background: #f8f9fa;
+}
+
+.hero-image {
+  flex: 1;
+  max-width: 500px;
 }
 
 .hero-image img {
-  max-width: 450px;
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
+/* Empresas Section */
 .empresas-section {
-  padding: 80px 0;
-  background: #fff;
+  padding: 80px 50px;
+  background: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
   text-align: center;
-  font-family: sans-serif;
+  margin-bottom: 16px;
 }
 
-.empresas-section h2 {
-  color: #333;
-  margin-bottom: 10px;
-  font-size: 1.8rem;
-}
-
-.empresas-section .highlight {
+.section-title .highlight {
   color: #005AAB;
-  font-weight: bold;
 }
 
-.empresas-section p {
+.section-subtitle {
+  font-size: 1.1rem;
   color: #666;
-  margin-bottom: 50px;
+  text-align: center;
+  margin-bottom: 60px;
 }
 
 .empresas-grid {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 30px;
-  flex-wrap: wrap;
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 0 20px;
 }
 
 .empresa-card {
   background: #f8f9fa;
-  padding: 25px;
-  border-radius: 15px;
-  border: 1px solid #eee;
-  width: 200px;
+  padding: 30px 20px;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.empresa-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  border-color: #005AAB;
 }
 
 .empresa-logo {
-  height: 70px;
+  height: 80px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 15px;
+  margin-bottom: 16px;
 }
 
 .empresa-logo img {
@@ -115,32 +155,69 @@
   object-fit: contain;
 }
 
-.empresa-card span {
-  font-size: 0.9rem;
-  color: #555;
+.empresa-placeholder {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #005AAB;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
   font-weight: 600;
+}
+
+.empresa-name {
+  font-size: 0.95rem;
+  color: #333;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .hero-text {
+    max-width: 100%;
+  }
+  
+  .hero-text h1 {
+    font-size: 2.2rem;
+  }
+  
+  .hero-image {
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 768px) {
   .hero-section {
-    padding: 40px 20px;
-    flex-direction: column;
-  }
-  
-  .hero-content {
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .hero-text {
-    text-align: center;
+    padding: 60px 20px;
   }
   
   .hero-text h1 {
+    font-size: 1.8rem;
+  }
+  
+  .hero-text p {
+    font-size: 1.1rem;
+  }
+  
+  .empresas-section {
+    padding: 60px 20px;
+  }
+  
+  .section-title {
     font-size: 2rem;
   }
   
-  .hero-image img {
-    max-width: 100%;
+  .empresas-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
   }
 }

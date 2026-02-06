@@ -1,28 +1,35 @@
-<div *ngIf="datos" class="hero-section" [style.backgroundColor]="datos.fields.heroBackgroundColor">
-  <div class="hero-content">
-    <div class="hero-text">
-      <h1>{{ datos.fields.heroTitle }}</h1>
-      <p>{{ datos.fields.heroSubtitle }}</p>
-      <button>{{ datos.fields.heroCtaButtonText }}</button>
-    </div>
-    <div *ngIf="imageUrl" class="hero-image">
-      <img [src]="imageUrl" alt="Hero">
+<!-- Hero Section -->
+<div class="hero-section" [style.background]="datos?.fields?.heroBackgroundColor || 'linear-gradient(135deg, #005AAB 0%, #003d7a 100%)'">
+  <div class="hero-container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>{{ datos?.fields?.heroTitle || '¡Conocé los increíbles beneficios de ser parte de Vitared Salud!' }}</h1>
+        <p>{{ datos?.fields?.heroSubtitle || 'Tu salud es nuestra prioridad. Descubrí nuestros planes y servicios.' }}</p>
+        <button class="hero-button">{{ datos?.fields?.heroCtaButtonText || 'Conocé más' }}</button>
+      </div>
+      <div *ngIf="imageUrl" class="hero-image">
+        <img [src]="imageUrl" alt="Vitared Salud">
+      </div>
     </div>
   </div>
 </div>
 
-<div class="empresas-section">
-  <h2>
-    Empresas que integran <span class="highlight">VITARED SALUD</span>
-  </h2>
-  <p>Disfrutá los beneficios de ser parte de nuestra red.</p>
+<!-- Empresas Section -->
+<div class="empresas-section" *ngIf="empresas.length > 0">
+  <div class="section-container">
+    <h2 class="section-title">
+      Empresas que integran <span class="highlight">Vitared Salud</span>
+    </h2>
+    <p class="section-subtitle">Disfrutá los beneficios de ser parte de nuestra red.</p>
 
-  <div class="empresas-grid">
-    <div *ngFor="let emp of empresas" class="empresa-card">
-      <div class="empresa-logo">
-        <img [src]="emp.urlLogo" [alt]="emp.nombre">
+    <div class="empresas-grid">
+      <div *ngFor="let emp of empresas" class="empresa-card">
+        <div class="empresa-logo">
+          <img *ngIf="emp.urlLogo" [src]="emp.urlLogo" [alt]="emp.nombre">
+          <div *ngIf="!emp.urlLogo" class="empresa-placeholder">{{ emp.nombre.charAt(0) }}</div>
+        </div>
+        <span class="empresa-name">{{ emp.nombre }}</span>
       </div>
-      <span>{{ emp.nombre }}</span>
     </div>
   </div>
 </div>
