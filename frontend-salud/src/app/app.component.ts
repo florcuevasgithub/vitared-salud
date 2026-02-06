@@ -14,6 +14,7 @@ import { FooterComponent } from './components/footer/footer';
       <router-outlet></router-outlet>
     </main>
     <app-footer></app-footer>
-  `
+  `,
+  styles: []
 })
 export class AppComponent {}
