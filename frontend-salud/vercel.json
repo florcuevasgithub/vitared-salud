@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "buildCommand": "cd frontend-salud && npm install && npm run build",
-  "outputDirectory": "frontend-salud/dist/frontend-salud/browser",
-  "installCommand": "cd frontend-salud && npm install",
+  "buildCommand": "npm install && npm run build",
+  "outputDirectory": "dist/frontend-salud/browser",
+  "installCommand": "npm install",
   "framework": null,
   "cleanUrls": true,
   "trailingSlash": false,
