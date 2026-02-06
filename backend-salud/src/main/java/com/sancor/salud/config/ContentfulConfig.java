@@ -66,4 +66,5 @@ public class ContentfulConfig {
                 .setEnvironment(environment)
                 .build();
     }
+    */
 }
