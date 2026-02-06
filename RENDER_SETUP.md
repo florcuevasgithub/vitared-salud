@@ -49,9 +49,9 @@
 2. **Region:** Mismo que las bases de datos
 3. **Branch:** `main`
 4. **Root Directory:** `backend-salud`
-5. **Environment:** `Java`
-6. **Build Command:** `./mvnw clean package -DskipTests`
-7. **Start Command:** `java -jar target/*.jar`
+5. **Environment:** `Docker` ⚠️ **IMPORTANTE: Usar "Docker", NO "Java"**
+6. **Build Command:** (DEJAR VACÍO - el Dockerfile maneja el build)
+7. **Start Command:** (DEJAR VACÍO - el Dockerfile maneja el start)
 
 ### Variables de Entorno:
 
